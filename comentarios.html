@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Online - Cuidado Personalizado</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#8b5cf6',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Head -->
+    <header class="sticky top-0 z-50 shadow-md">
+        <nav class="bg-gradient-to-r from-primary to-secondary text-white">
+            <div class="container mx-auto px-4 py-3">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-hospital text-2xl"></i>
+                        <a href="index.html" class="text-xl font-bold">Hospital Online</a>
+                    </div>
+                    <div class="hidden md:flex space-x-6">
+                        <a href="index.html" class="hover:text-gray-200 transition duration-300 flex items-center">
+                            <i class="fas fa-home mr-2"></i> Início
+                        </a>
+                        <a href="agendamento.html" class="hover:text-gray-200 transition duration-300 flex items-center">
+                            <i class="fas fa-calendar-check mr-2"></i> Login
+                        </a>
+                    </div>
+                    <button class="md:hidden focus:outline-none" id="mobile-menu-button">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+                <!-- Mobile Menu -->
+                <div class="md:hidden hidden mt-4 pb-2" id="mobile-menu">
+                    <a href="index.html" class="block py-2 hover:bg-blue-500 rounded px-2 transition">
+                        <i class="fas fa-home mr-2"></i> Início
+                    </a>
+                    <a href="agendamento.html" class="block py-2 hover:bg-blue-500 rounded px-2 transition">
+                        <i class="fas fa-calendar-check mr-2"></i> Agendamento
+                    </a>
+                    <a href="comentarios.html" class="block py-2 hover:bg-blue-500 rounded px-2 transition">
+                        <i class="fas fa-comments mr-2"></i> Avaliar Serviço
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main  -->
+    <div class="container mx-auto px-4 py-8 flex flex-col">
+        <!-- Commentarios-->
+        <div class="w-full mb-8">
+            <h2 class="text-2xl font-bold mb-4">Comentários</h2>
+            <table>
+                    <th>
+                        <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-white text-xl font-bold mr-4">C</div>
+                                <div>
+                                    <h4 class="font-semibold">Carlos Pinto</h4>
+                                    <div class="flex text-yellow-400">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-600">"Fiz meu check-up anual e fiquei impressionado com a qualidade do serviço. Recomendo a todos!"</p>
+                        </div>        
+                    </th>
+                    <th>
+                        <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white text-xl font-bold mr-4">R</div>
+                                <div>
+                                    <h4 class="font-semibold">Raio Lazer Ler</h4>
+                                    <div class="flex text-yellow-400">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-600">"Atendimento excelente! Os médicos são muito atenciosos e o agendamento pela internet é super prático e o medico Tabaka Tabaku é um divo."</p>
+                        </div>
+                    </div>
+                </div>
+        
+                    </th>
+            </table>
+            
+                
+                
+        <!-- Feedback  -->
+        <div class="w-full">
+            <h2 class="text-2xl font-bold mb-4">Avalie o serviço</h2>
+            <form class="bg-white p-6 rounded-lg shadow-md">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700">Nome:</label>
+                    <input type="text" id="name" class="border border-gray-300 p-2 w-full rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700">Email:</label>
+                    <input type="email" id="email" class="border border-gray-300 p-2 w-full rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="feedback" class="block text-gray-700">Feedback:</label>
+                    <textarea id="feedback" rows="4" class="border border-gray-300 p-2 w-full rounded" required></textarea>
+                </div>
+                <button type="submit" class="bg-primary text-white py-2 px-4 rounded">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-hospital text-2xl text-primary"></i>
+                        <span class="text-xl font-bold">Hospital Online</span>
+                    </div>
+                    <p class="text-gray-400">Cuidando da sua saúde com excelência e tecnologia.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Início</a></li>
+                        <li><a href="agendamento.html" class="text-gray-400 hover:text-white transition">Agendamento</a></li>
+                        <li><a href="comentarios.html" class="text-gray-400 hover:text-white transition">Comentários</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contato</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2"></i> (16) 1234-5678
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i> contato@suportehospital.com
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2"></i> Endereço do Hospital
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Redes Sociais</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com" class="text-gray-400 hover:text-white transition text-xl">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com" class="text-gray-400 hover:text-white transition text-xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 Trabalho de conclusão de curso da turma de desenvolvimento de sistemas da ETEC Antonio de Padu Cardoso, SP.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Online - Cuidado Personalizado</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#8b5cf6',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+
+        function login() {
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+
+            if (email && senha) {
+                document.getElementById('formulario-login').style.display = 'none';
+                document.getElementById('formulario-agendamento').style.display = 'block';
+            } else {
+                alert('Por favor, preencha todos os campos de login.');
+            }
+        }
+
+        function continuarSemLogin() {
+            document.getElementById('loader').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('formulario-login').style.display = 'none';
+                document.getElementById('formulario-agendamento').style.display = 'block';
+            }, 2000);
+        }
+
+        function filtrarEspecialidades() {
+            const filtro = document.getElementById("filtroEspecialidade").value.toLowerCase();
+            const especialidades = document.getElementById("listaEspecialidades").getElementsByTagName("label");
+
+            for (let i = 0; i < especialidades.length; i++) {
+                const texto = especialidades[i].innerText.toLowerCase();
+                especialidades[i].style.display = texto.includes(filtro) ? "" : "none";
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #A9A9A9, #D3D3D3);
+        }
+
+        .form-container {
+            width: 700px; /* Aumentando a largura do formulário */
+            background: white;
+            padding: 40px; /* Aumentando o padding */
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .form-control, .form-select {
+            width: 100%;
+            padding: 12px; /* Aumentando o padding dos campos */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px; /* Aumentando o espaço entre os campos */
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        .image-container {
+            flex: 1;
+            background-image: url('https://www.museucasadeportinari.org.br/wp-content/uploads/2019/12/portico-brodowski.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            height: 100%;
+        }
+
+        .loader {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+        }
+
+        .loader__bar {
+            position: absolute;
+            bottom: 0;
+            width: 10px;
+            height: 50%;
+            background: rgb(0, 0, 0);
+            transform-origin: center bottom;
+            box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .loader__ball {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background: rgb(44, 143, 255);
+            border-radius: 50%;
+            animation: ball624 4s infinite;
+        }
+
+        @keyframes ball624 {
+            0% { transform: translate(0, 0); }
+            5% { transform: translate(8px, -14px); }
+            10% { transform: translate(15px, -10px); }
+            20% { transform: translate(30px, -20px); }
+            50% { transform: translate(60px, 0); }
+            100% { transform: translate(0, 0); }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+
+    <header class="sticky top-0 z-50 shadow-md">
+        <nav class="bg-gradient-to-r from-primary to-secondary text-white">
+            <div class="container mx-auto px-4 py-3">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-hospital text-2xl"></i>
+                        <a href="index.html" class="text-xl font-bold">Hospital Online</a>
+                    </div>
+                    <div class="hidden md:flex space-x-6">
+                        <a href="index.html" class="hover:text-gray-200 transition duration-300 flex items-center">
+                            <i class="fas fa-home mr-2"></i> Início
+                        </a>
+                    </div>
+                    <button class="md:hidden focus:outline-none" id="mobile-menu-button">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="loader" id="loader">
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__bar"></div>
+        <div class="loader__ball"></div>
+    </div>
+
+    <div class="container mx-auto flex justify-center items-center min-h-screen" id="formulario-login">
+        <div class="form-container mb-10">
+            <h2 class="text-center text-primary text-2xl font-bold mb-5">Login</h2>
+            <form onsubmit="event.preventDefault(); login();">
+                <input type="email" id="email" class="form-control" placeholder="Digite seu e-mail" required>
+                <input type="password" id="senha" class="form-control" placeholder="Digite sua senha" required>
+                <button type="submit" class="btn bg-primary text-white rounded hover:bg-blue-700 transition duration-300">Entrar</button>
+                <button type="button" class="btn bg-secondary text-white rounded hover:bg-purple-700 transition duration-300 mt-2" onclick="continuarSemLogin()">Continuar sem Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container mx-auto flex justify-center items-center min-h-screen" style="display:none;" id="formulario-agendamento">
+        <div class="form-container">
+            <h2 class="text-center text-primary text-2xl font-bold mb-5">Agendamento de Consulta</h2>
+            <form method="post" action="aula5-recebeDados.php">
+                <input type="text" class="form-control" placeholder="Digite seu nome" required>
+                <input type="text" class="form-control" placeholder="Informe seu parentesco" required>
+                <input type="number" class="form-control" placeholder="Digite sua idade" required>
+                <textarea class="form-control" rows="3" placeholder="Descreva o motivo da consulta" required></textarea>
+                <input type="text" class="form-control" placeholder="Digite seu RG" required>
+                <select class="form-select" required>
+                    <option value="" disabled selected>Selecione o nível de urgência...</option>
+                    <option value="1">Baixa</option>
+                    <option value="2">Média</option>
+                    <option value="3">Alta</option>
+                </select>
+                <p class="mb-2 font-medium text-gray-700">Qual tipo de médico ou dentista você deseja?</p>
+                <input type="text" id="filtroEspecialidade" onkeyup="filtrarEspecialidades()" placeholder="Buscar especialidade..." class="form-control mb-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2" id="listaEspecialidades">
+                    <p class="mb-2 font-semibold text-gray-700 text-lg">Escolha a especialidade desejada:</p>
+
+                    <div class="relative mb-4">
+                        <i class="fas fa-search absolute top-3 left-3 text-gray-400"></i>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3" id="listaEspecialidades">
+                            <!-- Médicas -->
+                            <label class="flex items-center bg-gray-100 hover:bg-gray-200 p-3 rounded-lg shadow-sm cursor-pointer">
+                                <i class="fas fa-stethoscope text-primary mr-3"></i>
+                                <input type="checkbox" class="mr-2"> Clínica Geral
+                            </label>
+                            <label class="flex items-center bg-gray-100 hover:bg-gray-200 p-3 rounded-lg shadow-sm cursor-pointer">
+                                <i class="fas fa-baby text-pink-500 mr-3"></i>
+                                <input type="checkbox" class="mr-2"> Pediatria
+                            </label>
+                            <label class="flex items-center bg-gray-100 hover:bg-gray-200 p-3 rounded-lg shadow-sm cursor-pointer">
+                                <i class="fas fa-heartbeat text-red-500 mr-3"></i>
+                                <input type="checkbox" class="mr-2"> Cardiologia
+                            </label>
+                            <label class="flex items-center bg-gray-100 hover:bg-gray-200 p-3 rounded-lg shadow-sm cursor-pointer">
+                                <i class="fas fa-allergies text-yellow-500 mr-3"></i>
+                                <input type="checkbox" class="mr-2"> Dermatologia
+                            </label>
+
+                            <!-- Odontológicas -->
+                            <label class="flex items-center bg-gray-100 hover:bg-gray-200 p-3 rounded-lg shadow-sm cursor-pointer">
+                                <i class="fas fa-tooth text-blue-500 mr-3"></i>
+                                <input type="checkbox" class="mr-2"> Odontopediatria
+                            </label>
+                            <label class="flex items-center bg-gray-100 hover:bg-gray-200 p-3 rounded-lg shadow-sm cursor-pointer">
+                                <i class="fas fa-grin-beam text-green-600 mr-3"></i>
+                                <input type="checkbox" class="mr-2"> Ortodontia
+                            </label>
+                            <label class="flex items-center bg-gray-100 hover:bg-gray-200 p-3 rounded-lg shadow-sm cursor-pointer">
+                                <i class="fas fa-syringe text-purple-500 mr-3"></i>
+                                <input type="checkbox" class="mr-2"> Endodontia
+                            </label>
+                            <label class="flex items-center bg-gray-100 hover:bg-gray-200 p-3 rounded-lg shadow-sm cursor-pointer">
+                                <i class="fas fa-smile text-orange-400 mr-3"></i>
+                                <input type="checkbox" class="mr-2"> Estética Dental
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn bg-primary text-white rounded hover:bg-blue-700 transition duration-300">Agendar Consulta</button>
+            </form>
+        </div>
+        <div class="image-container ml-5"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

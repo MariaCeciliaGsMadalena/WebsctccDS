@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Online - Cuidado Personalizado</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A8A', // Azul mais suave
+                        secondary: '#FBBF24', // Amarelo mais suave
+                        dark: '#1F2937', // Cinza escuro
+                        light: '#F9FAFB' // Cinza claro
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-light">
+    <!-- Header/Navigation -->
+    <header class="sticky top-0 z-50 shadow-md" role="banner">
+        <nav class="bg-gradient-to-r from-primary to-secondary text-white" aria-label="Navegação principal">
+            <div class="container mx-auto px-4 py-3">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-hospital text-2xl" aria-hidden="true"></i>
+                        <a href="index.html" class="text-xl font-bold" aria-label="Página inicial">Hospital Online</a>
+                    </div>
+                    
+                    <div class="hidden md:flex space-x-6">
+                        <a href="index.html" class="hover:text-gray-200 transition duration-300 flex items-center" aria-label="Início">
+                            <i class="fas fa-home mr-2" aria-hidden="true"></i> Início
+                        </a>
+                        <a href="login.html" class="hover:text-gray-200 transition duration-300 flex items-center" aria-label="Login">
+                            <i class="fas fa-sign-in-alt mr-2" aria-hidden="true"></i> Login
+                        </a>
+                    </div>
+                    
+                    <button class="md:hidden focus:outline-none" id="mobile-menu-button" aria-label="Menu móvel">
+                        <i class="fas fa-bars text-2xl" aria-hidden="true"></i>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu -->
+                <div class="md:hidden hidden mt-4 pb-2" id="mobile-menu" role="menu">
+                    <a href="index.html" class="block py-2 hover:bg-blue-500 rounded px-2 transition" role="menuitem" aria-label="Início">
+                        <i class="fas fa-home mr-2" aria-hidden="true"></i> Início
+                    </a>
+                    <a href="agendamento.html" class="block py-2 hover:bg-blue-500 rounded px-2 transition" role="menuitem" aria-label="Agendamento">
+                        <i class="fas fa-calendar-check mr-2" aria-hidden="true"></i> Agendamento
+                    </a>
+                    <a href="comentarios.html" class="block py-2 hover:bg-blue-500 rounded px-2 transition" role="menuitem" aria-label="Avaliar Serviço">
+                        <i class="fas fa-comments mr-2" aria-hidden="true"></i> Avaliar Serviço
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary to-secondary text-white py-20" role="banner">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Nosso cuidado é pensado pra você!</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Consultas de urgência e serviços personalizados para sua saúde.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="agendamento.html" class="bg-white text-primary px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition duration-300 shadow-lg" aria-label="Agendar Consulta">
+                    <i class="fas fa-calendar-check mr-2" aria-hidden="true"></i> Agendar Consulta
+                </a>
+                <a href="comentarios.html" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-full font-medium hover:bg-white hover:text-primary transition duration-300" aria-label="Ver Depoimentos">
+                    <i class="fas fa-comments mr-2" aria-hidden="true"></i> Ver Depoimentos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FUNÇÕES DO SITE -->
+    <section class="py-16 bg-white" role="region" aria-labelledby="servicos">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 id="servicos" class="text-3xl font-bold text-dark mb-4">Nossos Serviços</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300" role="article">
+                    <div class="text-primary text-4xl mb-4" aria-hidden="true">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Consultas Especializadas</h3>
+                    <p class="text-gray-600">Agende com nossos especialistas em diversas áreas da medicina.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300" role="article">
+                    <div class="text-primary text-4xl mb-4" aria-hidden="true">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Check-up Completo</h3>
+                    <p class="text-gray-600">Avaliação completa da sua saúde com nossos pacotes personalizados.</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300" role="article">
+                    <div class="text-primary text-4xl mb-4" aria-hidden="true">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Agendamento de Exames</h3>
+                    <p class="text-gray-600">Fila pra exame? Nunca mais. Agende agora seus exames!</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300" role="article">
+                    <div class="text-primary text-4xl mb-4" aria-hidden="true">
+                        <i class="fas fa-user-injured"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Painel do Paciente</h3>
+                    <p class="text-gray-600">Acompanhe sua saúde com segurança: vacinas, consultas e carteirinha digital.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comentários dos pacientes -->
+    <section class="py-16 bg-white" role="region" aria-labelledby="depoimentos">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 id="depoimentos" class="text-3xl font-bold text-dark mb-4">O que nossos pacientes dizem</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Depoimentos de quem já experimentou nossos serviços</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm" role="article">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white text-xl font-bold mr-4" aria-hidden="true">A</div>
+                        <div>
+                            <h4 class="font-semibold">Caramelo da Silva</h4>
+                            <div class="flex text-yellow-400" aria-hidden="true">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Atendimento excelente! Os médicos são muito atenciosos e o agendamento pela internet é super prático."</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm" role="article">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-white text-xl font-bold mr-4" aria-hidden="true">C</div>
+                        <div>
+                            <h4 class="font-semibold">Carlos Pinto</h4>
+                            <div class="flex text-yellow-400" aria-hidden="true">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Fiz meu check-up anual e fiquei impressionado com a qualidade do serviço. Recomendo a todos!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Head -->
+    <section class="py-16 bg-gradient-to-r from-primary to-secondary text-white" role="region" aria-labelledby="saude">
+        <div class="container mx-auto px-4 text-center">
+            <h2 id="saude" class="text-3xl font-bold mb-6">Pronto para cuidar da sua saúde?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Agende sua consulta agora mesmo e dê o primeiro passo para uma vida mais saudável</p>
+            <a href="agendamento.html" class="inline-block bg-white text-primary px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition duration-300 shadow-lg text-lg" aria-label="Agendar Consulta">
+                <i class="fas fa-calendar-check mr-2" aria-hidden="true"></i> Agendar Consulta
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-8" role="contentinfo">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-hospital text-2xl text-primary" aria-hidden="true"></i>
+                        <span class="text-xl font-bold">Hospital Online</span>
+                    </div>
+                    <p class="text-gray-400">Cuidando da sua saúde com excelência e tecnologia.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition" aria-label="Início">Início</a></li>
+                        <li><a href="agendamento.html" class="text-gray-400 hover:text-white transition" aria-label="Agendamento">Agendamento</a></li>
+                        <li><a href="comentarios.html" class="text-gray-400 hover:text-white transition" aria-label="Comentários">Comentários</a></li>
+                        <li><a href="https://brodowski.sp.gov.br/novo/" class="text-gray-400 hover:text-white transition" aria-label="Prefeitura de Brodowski">Prefeitura de Brodowski</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contato</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2" aria-hidden="true"></i> (16) 1234-5678
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2" aria-hidden="true"></i> contato@suportehospital.com
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Redes Sociais</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com" class="text-gray-400 hover:text-white transition text-xl" aria-label="Facebook">
+                            <i class="fab fa-facebook" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.instagram.com" class="text-gray-400 hover:text-white transition text-xl" aria-label="Instagram">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 Trabalho de conclusão de curso da turma de desenvolvimento de sistemas da ETEC Batatais, SP.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
